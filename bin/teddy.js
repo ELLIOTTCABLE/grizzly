@@ -32,6 +32,8 @@ include("../../poopy.js/lib/poopy.js");
   return teddy;
 })();
 
+// This simply iterates over all of our grizzly description files, and
+// includes them.
 (function () {
   var loadDescriptions = function (path) {
     node.createProcess('$(which ls) -Ap "' + path + '"')
