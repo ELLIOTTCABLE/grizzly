@@ -1,6 +1,26 @@
 #!/usr/bin/env node
 include("../../poopy.js/lib/poopy.js");
 
+(function () {
+  var loadDescriptions = function (path) {
+    node.createProcess('$(which ls) -Ap "' + path + '"')
+      .addListener("output", function (data) { if(data != null) {
+        
+        for (var t = data.split("\n"), l = t.length, i = 0; i < l; i++) { var it = t[i];
+          if(it[it.length - 1] == "/") {
+            loadDescriptionsIn(path + "/" + it);
+          } else if(it.length > 0) {
+            puts('-- including: ' + it);
+            include(it);
+          };
+        };
+        
+      }});
+  };
+  
+  loadDescriptions('desc');
+})();
+
 function onLoad() {
   
   // This is a miniature spec–ing library which should work similar to grizzly
