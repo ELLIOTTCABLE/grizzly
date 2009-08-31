@@ -51,7 +51,7 @@ include("../../poopy.js/lib/poopy.js");
       }});
   };
   
-  loadDescriptions('desc');
+  loadDescriptions('descriptions');
 })();
 
 function onLoad() {
