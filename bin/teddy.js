@@ -13,10 +13,10 @@ include("../../poopy.js/lib/poopy.js");
 // a library described with grizzly) and the (necessarily) completely un–
 // tested code (in this case, teddy).
 (function () {
-  teddy = {};
+  var teddy = {};
   
   (function () {
-    teddy['description'] = {};
+    var teddy['description'] = {};
     
     teddy.description['Begettor'] = function () {
       
