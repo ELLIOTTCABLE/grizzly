@@ -41,7 +41,7 @@ include("../../poopy.js/lib/poopy.js");
         
         for (var t = data.split("\n"), l = t.length, i = 0; i < l; i++) { var it = t[i];
           if(it[it.length - 1] == "/") {
-            loadDescriptionsIn(path + "/" + it);
+            loadDescriptions(path + "/" + it);
           } else if(it.length > 0) {
             puts('-- including: ' + it);
             include(it);
