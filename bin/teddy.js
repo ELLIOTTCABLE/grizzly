@@ -30,36 +30,29 @@ acquire("/poopy");
       
     };
     
-    return teddy['description'];
+    return teddy.description;
   })();
   
-  return teddy;
-})();
-
-// This simply iterates over all of our grizzly description files, and
-// includes them.
-(function () {
-  var loadDescriptions = function (path) {
-    node.createProcess('$(which ls) -Ap "' + path + '"')
-      .addListener("output", function (data) { if(data != null) {
-        
-        for (var t = data.split("\n"), l = t.length, i = 0; i < l; i++) { var it = t[i];
-          if(it[it.length - 1] == "/") {
-            loadDescriptions(path + "/" + it);
-          } else if(it.length > 0) {
-            puts('-- including: ' + it);
-            include(it);
-          };
+  teddy['run'] = function (directory) {
+    if (typeof directory === "undefined") {
+      directory = 'descriptions' };
+    descriptionsDirectory = node.cwd() + '/' + directory;
+    
+    // Globally define `description` BAD IDEA OMGZORZ
+    description = teddy.description;
+    
+    node.fs.readdir(descriptionsDirectory)
+      .addCallback(function (descriptions) {
+        for (var arr=descriptions,l=arr.length,i=0,it=arr[i];i<l;i++,it=arr[i]){
+          var description = acquire(descriptionsDirectory + '/' + it);
+          description.execute();
         };
-        
-      }});
+      })
+      .addErrback(function () {
+        node.stdio.writeError("could not read " + descriptionsDirectory); });
   };
   
-  loadDescriptions('descriptions');
+  if (process.ARGV[1] === __filename && !teddy.running) {
+    teddy.running = true; teddy.run(); };
+  return teddy;
 })();
-
-function onLoad() {
-  
-  
-  
-};
