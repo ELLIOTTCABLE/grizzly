@@ -16,7 +16,7 @@ include("../../poopy.js/lib/poopy.js");
   var teddy = {};
   
   (function () {
-    var teddy['description'] = {};
+    teddy['description'] = {};
     
     teddy.description['Begettor'] = function () {
       
