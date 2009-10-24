@@ -12,6 +12,9 @@ include("../../poopy.js/lib/poopy.js");
 // (grizzly itself) between your code (described with grizzly, or utilizing
 // a library described with grizzly) and the (necessarily) completely un–
 // tested code (in this case, teddy).
+// 
+// `teddy` will be deprecated, and `grizzly`’s tests will be run with
+// `grizzly` itself, as soon as `grizzly` is capable of basic test execution.
 (function () {
   var teddy = {};
   
