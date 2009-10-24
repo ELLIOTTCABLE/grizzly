@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-include("../../poopy.js/lib/poopy.js");
+require("/acquire.js");
+acquire("/poopy");
 
 // This is a miniature spec–ing library which should work similar to grizzly
 // itself. The purpose being to allow us to develop grizzly itself in a BDD
