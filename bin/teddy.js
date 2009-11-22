@@ -23,18 +23,14 @@ posix = require('posix');
 (function () {
   var teddy = {};
   
-  (function () {
-    teddy['description'] = {};
+  teddy['description'] = (function () {
+    var description = {}.beget();
     
-    teddy.description['Begettor'] = function () {
+    description['execute'] = function () {
       
     };
     
-    teddy.description['execute'] = function () {
-      
-    };
-    
-    return teddy.description;
+    return description;
   })();
   
   teddy['run'] = function (directory) {
