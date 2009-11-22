@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-require("/acquire.js");
-acquire("/poopy");
+// For now, we’re going to develop with absolute paths. It’s just easier this
+// way. I don’t really want to deal with putting my poopy.js package yet.
+process.mixin(require("/Users/elliottcable/Code/poopy.js/lib/acquire"));
+acquire.absolute("/Users/elliottcable/Code/poopy.js/lib/acquire.js");
+
+posix = require('posix');
 
 // This is a miniature spec–ing library which should work similar to grizzly
 // itself. The purpose being to allow us to develop grizzly itself in a BDD
@@ -36,12 +40,12 @@ acquire("/poopy");
   teddy['run'] = function (directory) {
     if (typeof directory === "undefined") {
       directory = 'descriptions' };
-    descriptionsDirectory = node.cwd() + '/' + directory;
+    descriptionsDirectory = process.cwd() + '/' + directory;
     
     // Globally define `description` BAD IDEA OMGZORZ
     description = teddy.description;
     
-    node.fs.readdir(descriptionsDirectory)
+    posix.readdir(descriptionsDirectory)
       .addCallback(function (descriptions) {
         for (var arr=descriptions,l=arr.length,i=0,it=arr[i];i<l;i++,it=arr[i]){
           var description = acquire(descriptionsDirectory + '/' + it);
