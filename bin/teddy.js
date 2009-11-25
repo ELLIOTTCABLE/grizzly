@@ -37,15 +37,15 @@ posix = require('posix');
     var check = {}.beget();
     
    (check['constructor'] = function (blueprint) {
-      if (!typeof blueprint['target'] === 'undefined') {
+      if (typeof blueprint['target'] !== 'undefined') {
         this['target'] = blueprint['target'] };
-      if (!typeof blueprint['expectation'] === 'undefined') {
+      if (typeof blueprint['expectation'] !== 'undefined') {
         this['expectation'] = blueprint['expectation'] };
     }).prototype = check;
     
     check['execute'] = function (target) {
       if (typeof target === 'undefined') {
-        if (!typeof this['target']['call'] === 'undefined') {
+        if (typeof this['target']['call'] !== 'undefined') {
           target = this['target'].call() }
         else {
           target = this['target'] }
