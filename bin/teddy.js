@@ -33,6 +33,31 @@ posix = require('posix');
     return description;
   })();
   
+  teddy['check'] = (function () {
+    var check = {}.beget();
+    
+   (check['constructor'] = function (blueprint) {
+      if (!typeof blueprint['target'] === 'undefined') {
+        this['target'] = blueprint['target'] };
+      if (!typeof blueprint['expectation'] === 'undefined') {
+        this['expectation'] = blueprint['expectation'] };
+    }).prototype = check;
+    
+    check['execute'] = function (target) {
+      if (typeof target === 'undefined') {
+        if (!typeof this['target']['call'] === 'undefined') {
+          target = this['target'].call() }
+        else {
+          target = this['target'] }
+      };
+      
+      return this['expectation'].apply(target);
+    };
+    
+    return check;
+  })();
+  
+  
   teddy['run'] = function (directory) {
     teddy.running = true;
     
