@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // For now, we’re going to develop with absolute paths. It’s just easier this
 // way. I don’t really want to deal with putting my poopy.js package yet.
-process.mixin(require("/Users/elliottcable/Code/poopy.js/lib/acquire"));
-acquire.absolute("/Users/elliottcable/Code/poopy.js/lib/acquire.js");
+process.mixin(require.async("/Users/elliottcable/Code/poopy.js/lib/acquire").wait());
+var poopy = acquire.absolute("/Users/elliottcable/Code/poopy.js/lib/poopy.js").wait();
 
 posix = require('posix');
 
