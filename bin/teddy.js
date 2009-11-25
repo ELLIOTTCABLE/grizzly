@@ -65,7 +65,9 @@ posix = require('posix');
       directory = 'descriptions' };
     descriptionsDirectory = process.cwd() + '/' + directory;
     
-    // Globally define `description` BAD IDEA OMGZORZ
+    // FIXME: Globally define `description` BAD IDEA OMGZORZ. Should probably
+    //        inject `description` and `check` into the compiled descriptions
+    //        as arguments to the wrapper function.
     description = teddy.description;
     
     posix.readdir(descriptionsDirectory)
