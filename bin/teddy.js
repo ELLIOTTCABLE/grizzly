@@ -34,6 +34,8 @@ posix = require('posix');
   })();
   
   teddy['run'] = function (directory) {
+    teddy.running = true;
+    
     if (typeof directory === "undefined") {
       directory = 'descriptions' };
     descriptionsDirectory = process.cwd() + '/' + directory;
@@ -50,9 +52,12 @@ posix = require('posix');
       })
       .addErrback(function () {
         node.stdio.writeError("could not read " + descriptionsDirectory); });
+    
+    // FIXME: This is stupid, it will become false *before* the checks run
+    //        #asyncronicityfail.
+    teddy.running = false;
   };
   
-  if (process.ARGV[1] === __filename && !teddy.running) {
-    teddy.running = true; teddy.run(); };
+  if (process.ARGV[1] === __filename && !teddy.running) { teddy.run() };
   return teddy;
 })();
